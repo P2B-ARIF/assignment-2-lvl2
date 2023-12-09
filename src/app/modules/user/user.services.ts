@@ -25,7 +25,7 @@ const updateUserData = async (userId: number, userData: IUser) => {
     const result = await UserModel.findOneAndUpdate(
         { userId: userId },
         { $set: userData },
-        { new: true },
+        { new: true },  
     )
     return result   
 }
