@@ -18,9 +18,9 @@ const getSingleUser = async (userId: number): Promise<IUser | null> => {
 
 const deleteSingleUser = async (userId: number) => {
     const result = await UserModel.findOneAndDelete({ userId: userId })
-    return result
+    return result 
 }
- 
+
 const updateUserData = async (userId: number, userData: IUser) => {
     const result = await UserModel.findOneAndUpdate(
         { userId: userId },
