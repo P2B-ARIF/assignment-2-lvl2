@@ -1,5 +1,5 @@
 import { IOrder, IUser } from './user.interface'
-import UserModel from './user.model'
+import UserModel from './user.model' 
 
 const createUserData = async (userData: IUser) => {
     const result = await UserModel.create(userData)
