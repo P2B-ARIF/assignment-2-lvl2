@@ -24,7 +24,7 @@ const deleteSingleUser = async (userId: number) => {
 const updateUserData = async (userId: number, userData: IUser) => {
     const result = await UserModel.findOneAndUpdate(
         { userId: userId },
-        { $set: userData },
+        { $set: userData }, 
         { new: true },  
     )
     return result   
