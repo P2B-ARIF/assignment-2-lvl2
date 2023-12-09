@@ -1,7 +1,5 @@
-import { IOrder, IUser } from "./user.interface"
-import UserModel from "./user.model"
-
-
+import { IOrder, IUser } from './user.interface'
+import UserModel from './user.model'
 
 const createUserData = async (userData: IUser) => {
     const result = await UserModel.create(userData)
@@ -22,12 +20,12 @@ const deleteSingleUser = async (userId: number) => {
     const result = await UserModel.findOneAndDelete({ userId: userId })
     return result
 }
-
+ 
 const updateUserData = async (userId: number, userData: IUser) => {
     const result = await UserModel.findOneAndUpdate(
         { userId: userId },
         { $set: userData },
-        { new: true }
+        { new: true },
     )
     return result
 }
@@ -36,9 +34,9 @@ const createOrder = async (userId: number, order: IOrder) => {
     const result = await UserModel.findOneAndUpdate(
         { userId: userId },
         { $push: { orders: order } },
-    );
-    return result;
-};
+    )
+    return result
+}
 
 const getUserOrders = async (userId: number) => {
     const result = await UserModel.findOne({ userId })
@@ -48,27 +46,27 @@ const getUserOrders = async (userId: number) => {
 const getTotalPrice = async (userId: number) => {
     const result = await UserModel.aggregate([
         { $match: { userId: Number(userId) } },
-        { $unwind: "$orders" },
+        { $unwind: '$orders' },
         {
             $group: {
-                _id: "$_id", totalPrice: {
+                _id: '$_id',
+                totalPrice: {
                     $sum: {
-                        $multiply: ["$orders.price", "$orders.quantity"]
-                    }
-                }
-            }
+                        $multiply: ['$orders.price', '$orders.quantity'],
+                    },
+                },
+            },
         },
         {
-            $project: { _id: 0, totalPrice: 1 }
-        }
-    ]);
+            $project: { _id: 0, totalPrice: 1 },
+        },
+    ])
     if (result.length > 0) {
-        return result[0];
+        return result[0]
     } else {
         return null
     }
 }
-
 
 export const UserServices = {
     createUserData,
@@ -78,5 +76,5 @@ export const UserServices = {
     createOrder,
     updateUserData,
     getUserOrders,
-    getTotalPrice
+    getTotalPrice,
 }
