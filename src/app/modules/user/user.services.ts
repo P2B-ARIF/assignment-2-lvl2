@@ -27,7 +27,7 @@ const updateUserData = async (userId: number, userData: IUser) => {
         { $set: userData },
         { new: true },
     )
-    return result
+    return result   
 }
 
 const createOrder = async (userId: number, order: IOrder) => {
