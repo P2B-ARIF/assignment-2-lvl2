@@ -8,7 +8,7 @@ const createUserData = async (userData: IUser) => {
 
 const getUsers = async () => {
     const result = await UserModel.find()
-    return result
+    return result 
 }
 
 const getSingleUser = async (userId: number): Promise<IUser | null> => {
