@@ -38,7 +38,7 @@ const getUsers = async (req: Request, res: Response) => {
 const getSingleUser = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const result = await UserServices.getSingleUser(userId)
+        const result = await UserServices.getSingleUser(Number(userId))
         res.status(201).json({
             success: true,
             message: 'Single user fetched successfully!',
@@ -55,7 +55,7 @@ const getSingleUser = async (req: Request, res: Response) => {
 const deleteSingleUser = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const result = await UserServices.deleteSingleUser(userId)
+        const result = await UserServices.deleteSingleUser(Number(userId))
 
         if (!result) {
             return res.status(501).json({
@@ -84,7 +84,7 @@ const updateUser = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
         const userData = req.body
-        const result = await UserServices.updateUserData(userId, userData)
+        const result = await UserServices.updateUserData(Number(userId), userData)
         if (!result) {
             return res.status(501).json({
                 success: false,
@@ -112,7 +112,7 @@ const createOrder = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
         const order = req.body
-        const result = await UserServices.createOrder(userId, order)
+        const result = await UserServices.createOrder(Number(userId), order)
         if (!result) {
             return res.status(501).json({
                 success: false,
@@ -139,7 +139,7 @@ const createOrder = async (req: Request, res: Response) => {
 const getUserOrders = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const result = await UserServices.getUserOrders(userId)
+        const result = await UserServices.getUserOrders(Number(userId))
         if (!result) {
             return res.status(501).json({
                 success: false,
@@ -166,7 +166,7 @@ const getUserOrders = async (req: Request, res: Response) => {
 const getTotalPrice = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const result = await UserServices.getTotalPrice(userId)
+        const result = await UserServices.getTotalPrice(Number(userId))
         if (!result) {
             return res.status(501).json({
                 success: false,

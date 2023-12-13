@@ -25,4 +25,4 @@ const UserZodSchema = z.object({
   }),
 })
 
-export { OrderZodSchema, UserZodSchema }
+export { UserZodSchema }

@@ -3,6 +3,8 @@ import { IOrder, IUser } from './user.interface'
 import bcrypt from 'bcrypt'
 import config from '../../config'
 
+
+
 const OrderSchema = new Schema<IOrder>({
   productName: { type: String, required: [true, 'product name is required'] },
   price: { type: Number, required: [true, 'price is required'] },
@@ -34,11 +36,10 @@ const UserSchema = new Schema<IUser>({
     city: { type: String, required: [true, 'city is required'] },
     country: { type: String, required: [true, 'country is required'] },
   },
-  orders: [OrderSchema],
+  orders: { type: [OrderSchema] },
 })
 
 UserSchema.pre('save', async function (next) {
-  // hashing password
   this.password = await bcrypt.hash(this.password, Number(config.saltRounds))
   next()
 })

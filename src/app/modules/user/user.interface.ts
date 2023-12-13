@@ -1,3 +1,8 @@
+export interface IOrder {
+  productName: string
+  price: number
+  quantity: number
+}
 export interface IUser {
   userId: number
   username: string
@@ -15,11 +20,5 @@ export interface IUser {
     city: string
     country: string
   }
-  orders: [IOrder]
-}
-
-export interface IOrder {
-  productName: string
-  price: number
-  quantity: number
+  orders?: IOrder[]
 }
